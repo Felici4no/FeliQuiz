@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-fb-gray font-lucida text-gray-800;
+  }
+}
+
+@layer components {
+  .fb-button {
+    @apply bg-fb-blue text-white font-semibold py-1 px-4 rounded transition hover:bg-fb-blue-dark;
+  }
+  
+  .fb-card {
+    @apply bg-white border border-fb-border rounded shadow-fb p-4 mb-4;
+  }
+  
+  .fb-input {
+    @apply border border-fb-border rounded px-3 py-2 w-full focus:outline-none focus:border-fb-blue;
+  }
+  
+  .fb-badge {
+    @apply inline-block rounded-md p-1 border border-fb-border bg-white shadow-sm transition hover:shadow-md;
+  }
+  
+  .fb-navbar {
+    @apply bg-fb-blue text-white shadow-md;
+  }
+  
+  .fb-navbar-inner {
+    @apply container mx-auto flex items-center justify-between py-2 px-4;
+  }
+  
+  .fb-navbar-link {
+    @apply text-white hover:underline px-3 py-1;
+  }
+}
