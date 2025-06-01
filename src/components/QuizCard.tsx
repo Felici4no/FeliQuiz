@@ -9,11 +9,11 @@ interface QuizCardProps {
 
 const QuizCard: React.FC<QuizCardProps> = ({ quiz }) => {
   const categoryLabels = {
-    'entertainment': '🎉',
-    'thinking': '🧠',
-    'self-discovery': '🪞',
-    'expression': '🧑‍🎤',
-    'competition': '🏆'
+    'entertainment': '🎉 Pra se divertir',
+    'thinking': '🧠 Pra pensar',
+    'self-discovery': '🪞 Pra se conhecer',
+    'expression': '🧑‍🎤 Pra se expressar',
+    'competition': '🏆 Pra competir'
   };
 
   return (

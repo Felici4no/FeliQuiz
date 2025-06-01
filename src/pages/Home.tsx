@@ -11,11 +11,11 @@ const Home: React.FC = () => {
   const popularQuizzes = [...quizzes].sort((a, b) => b.takenCount - a.takenCount).slice(0, 3);
 
   const categories = [
-    { id: 'entertainment', label: 'Para se divertir', icon: <PartyPopper className="w-5 h-5 mr-2" /> },
-    { id: 'thinking', label: 'Para refletir', icon: <BrainCircuit className="w-5 h-5 mr-2" /> },
-    { id: 'self-discovery', label: 'Para se conhecer', icon: <Lightbulb className="w-5 h-5 mr-2" /> },
-    { id: 'expression', label: 'Para se expressar', icon: <HeartHandshake className="w-5 h-5 mr-2" /> },
-    { id: 'competition', label: 'Para competir', icon: <Trophy className="w-5 h-5 mr-2" /> }
+    { id: 'entertainment', label: 'Pra se divertir', icon: <PartyPopper className="w-5 h-5 mr-2" />, emoji: '🎉' },
+    { id: 'thinking', label: 'Pra pensar', icon: <BrainCircuit className="w-5 h-5 mr-2" />, emoji: '🧠' },
+    { id: 'self-discovery', label: 'Pra se conhecer', icon: <Lightbulb className="w-5 h-5 mr-2" />, emoji: '🪞' },
+    { id: 'expression', label: 'Pra se expressar', icon: <HeartHandshake className="w-5 h-5 mr-2" />, emoji: '🧑‍🎤' },
+    { id: 'competition', label: 'Pra competir', icon: <Trophy className="w-5 h-5 mr-2" />, emoji: '🏆' }
   ];
 
   return (
@@ -44,7 +44,7 @@ const Home: React.FC = () => {
               className="fb-card flex items-center justify-center hover:bg-gray-50 transition"
             >
               {category.icon}
-              <span>{category.label}</span>
+              <span>{category.label} {category.emoji}</span>
             </Link>
           ))}
         </div>
