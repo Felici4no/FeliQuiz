@@ -14,13 +14,15 @@ const TopicFilter: React.FC<Props> = ({ topics, onFilterChange }) => {
   useEffect(() => {
     const hasSubs = (topics.find(t => t.id === selectedType)?.subtopics?.length ?? 0) > 0;
     setShowSubs(selectedType !== 'todos' && hasSubs);
-    setSelectedSub('todos');
-    onFilterChange(selectedType);
-  }, [selectedType, topics, onFilterChange]);
+    if (selectedType === 'todos') {
+      onFilterChange('');
+    } else {
+      onFilterChange(selectedType, selectedSub === 'todos' ? undefined : selectedSub);
+    }
+  }, [selectedType, selectedSub, topics, onFilterChange]);
 
   const handleSub = (id: string) => {
     setSelectedSub(id);
-    onFilterChange(selectedType, id);
   };
 
   return (
@@ -46,7 +48,7 @@ const TopicFilter: React.FC<Props> = ({ topics, onFilterChange }) => {
       >
         <div className="flex flex-wrap gap-2">
           <button
-            className={`px-3 py-1 text-sm rounded ${selectedSub === 'todos' ? 'bg-fb-blue text-white' : 'bg-gray-200'}`}
+            className={`px-3 py-1 text-sm rounded ${selectedSub === 'todos' ? 'bg-fb-blue text-white' : 'bg-gray-200 hover:bg-gray-300'}`}
             onClick={() => handleSub('todos')}
           >Todos</button>
           {showSubs &&

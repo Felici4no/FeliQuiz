@@ -102,5 +102,3 @@ const QuizList: React.FC = () => {
     </div>
   );
 };
-
-export default QuizList;

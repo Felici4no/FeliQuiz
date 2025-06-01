@@ -5,7 +5,6 @@ import { FacebookIcon, TwitterIcon, InstagramIcon, MailIcon } from 'lucide-react
 const Footer: React.FC = () => (
   <footer className="bg-fb-blue text-white py-4">
     <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
-
       {/* Social icons */}
       <div className="flex space-x-4 mb-4 md:mb-0">
         <a href="https://facebook.com/feliquiz" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
@@ -29,5 +28,3 @@ const Footer: React.FC = () => (
     </div>
   </footer>
 );
-
-export default Footer;
