@@ -10,6 +10,7 @@ import QuizList from './pages/QuizList';
 import QuizDetail from './pages/QuizDetail';
 import Profile from './pages/Profile';
 import Auth from './pages/Auth';
+import Manifesto from './pages/ManifestoPage';
 import AnimatedRoute from './components/AnimatedRoute';
 
 const AnimatedRoutes = () => {
@@ -41,6 +42,11 @@ const AnimatedRoutes = () => {
         <Route path="/login" element={
           <AnimatedRoute>
             <Auth />
+          </AnimatedRoute>
+        } />
+        <Route path="/manifesto" element={
+          <AnimatedRoute>
+            <Manifesto />
           </AnimatedRoute>
         } />
       </Routes>

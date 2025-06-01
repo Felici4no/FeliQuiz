@@ -23,10 +23,10 @@ const Footer: React.FC = () => (
 
       {/* Copyright and creator */}
       <p className="text-sm text-center">
-        &copy; {new Date().getFullYear()} FeliQuiz • Criado por <Link to="/manifesto" className="underline hover:text-gray-200">Lucas Feliciano</Link>
+        &copy; {new Date().getFullYear()} FeliQuiz • Por <Link to="/manifesto" className="underline hover:text-gray-200">Lucas Feliciano</Link>
       </p>
     </div>
   </footer>
 );
 
-export default Footer
+export default Footer;
