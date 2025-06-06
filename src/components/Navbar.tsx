@@ -13,6 +13,7 @@ const Navbar: React.FC = () => {
           <Link to="/" className="text-2xl font-bold mr-6">FeliQuiz</Link>
         </div>
         <div className="flex items-center space-x-4">
+          <Link to="/quizzes" className="fb-navbar-link">Quizzes</Link>
           {currentUser ? (
             <div className="flex items-center space-x-3">
               <CoinBalance balance={currentUser.feliCoins} />
