@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Users, Coins, Timer } from 'lucide-react';
+import { Users, Coins, Clock } from 'lucide-react';
 import { Quiz } from '../types';
 
 interface QuizCardProps {
@@ -15,6 +15,19 @@ const QuizCard: React.FC<QuizCardProps> = ({ quiz }) => {
     'expression': '🧑‍🎤 Pra se expressar',
     'competition': '🏆 Pra competir'
   };
+
+  // Calculate estimated duration based on number of questions
+  const getEstimatedDuration = (questionCount: number): string => {
+    if (questionCount <= 3) {
+      return '1-2 min';
+    } else if (questionCount <= 8) {
+      return '3-5 min';
+    } else {
+      return '6+ min';
+    }
+  };
+
+  const estimatedDuration = getEstimatedDuration(quiz.questions.length);
 
   return (
     <div className="fb-card flex flex-col h-full hover:shadow-md transition-shadow">
@@ -55,8 +68,8 @@ const QuizCard: React.FC<QuizCardProps> = ({ quiz }) => {
           
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <Timer size={16} className="mr-1" />
-              <span>{quiz.questions.length} perguntas</span>
+              <Clock size={16} className="mr-1" />
+              <span>{estimatedDuration}</span>
             </div>
             <span className="text-fb-blue">
               {quiz.results.length} resultados possíveis
