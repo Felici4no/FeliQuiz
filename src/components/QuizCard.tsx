@@ -72,7 +72,7 @@ const QuizCard: React.FC<QuizCardProps> = ({ quiz }) => {
               <span>{estimatedDuration}</span>
             </div>
             <span className="text-fb-blue">
-              {quiz.results.length} resultados possíveis
+              {quiz.results.length} Badges possíveis
             </span>
           </div>
         </div>
