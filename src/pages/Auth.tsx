@@ -81,7 +81,7 @@ const Auth: React.FC = () => {
         >
           {error && (
             <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md flex items-center">
-              <AlertCircle className="text-red-500 mr-2" size={20} />
+              <AlertCircle className="text-red-500 mr-2\" size={20} />
               <span className="text-red-700 text-sm">{error}</span>
             </div>
           )}
@@ -180,7 +180,7 @@ const Auth: React.FC = () => {
             >
               {isLoading ? (
                 <>
-                  <Loader className="animate-spin mr-2" size={20} />
+                  <Loader className="animate-spin mr-2\" size={20} />
                   <span>{isLogin ? 'Entrando...' : 'Criando conta...'}</span>
                 </>
               ) : (
