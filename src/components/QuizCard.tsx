@@ -72,7 +72,7 @@ const QuizCard: React.FC<QuizCardProps> = ({ quiz }) => {
           
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <Timer size={16} className="mr-1" />
+              <Clock size={16} className="mr-1" />
               <span>{quiz.questions.length} perguntas</span>
             </div>
             <span className="text-fb-blue">
