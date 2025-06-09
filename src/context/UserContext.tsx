@@ -10,6 +10,9 @@ interface UserContextType {
   register: (name: string, username: string, email: string, password: string) => Promise<boolean>;
   logout: () => void;
   isLoading: boolean;
+  manifestoLikes: number;
+  hasLikedManifesto: boolean;
+  toggleManifestoLike: () => void;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -17,6 +20,8 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [manifestoLikes, setManifestoLikes] = useState(1247); // Starting with some likes
+  const [userLikes, setUserLikes] = useState<Set<string>>(new Set()); // Track which users liked
 
   const getUserByUsername = (username: string): User | undefined => {
     return mockUsers.find(user => user.username === username);
@@ -74,6 +79,27 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setCurrentUser(null);
   };
 
+  const toggleManifestoLike = () => {
+    if (!currentUser) return;
+    
+    const userId = currentUser.id;
+    const newUserLikes = new Set(userLikes);
+    
+    if (userLikes.has(userId)) {
+      // Remove like
+      newUserLikes.delete(userId);
+      setManifestoLikes(prev => prev - 1);
+    } else {
+      // Add like
+      newUserLikes.add(userId);
+      setManifestoLikes(prev => prev + 1);
+    }
+    
+    setUserLikes(newUserLikes);
+  };
+
+  const hasLikedManifesto = currentUser ? userLikes.has(currentUser.id) : false;
+
   return (
     <UserContext.Provider value={{ 
       currentUser, 
@@ -82,7 +108,10 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
       login,
       register,
       logout,
-      isLoading
+      isLoading,
+      manifestoLikes,
+      hasLikedManifesto,
+      toggleManifestoLike
     }}>
       {children}
     </UserContext.Provider>
