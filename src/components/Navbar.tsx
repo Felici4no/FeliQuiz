@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
+import CoinBalance from './CoinBalance';
 
 const Navbar: React.FC = () => {
   const { currentUser } = useUser();
@@ -14,8 +15,9 @@ const Navbar: React.FC = () => {
         <div className="flex items-center space-x-4">
           <Link to="/quizzes" className="fb-navbar-link">Quizzes</Link>
           {currentUser ? (
-            <>
-              <Link to={`/profile/${currentUser.username}`} className="flex items-center">
+            <div className="flex items-center space-x-3">
+              <CoinBalance balance={currentUser.feliCoins} />
+              <Link to={`/profile/${currentUser.username}`} className="flex items-center hover:bg-white/10 rounded px-2 py-1 transition">
                 <img
                   src={currentUser.profilePicture}
                   alt={currentUser.name}
@@ -23,9 +25,9 @@ const Navbar: React.FC = () => {
                 />
                 <span className="hidden md:inline">{currentUser.name}</span>
               </Link>
-            </>
+            </div>
           ) : (
-            <Link to="/login" className="fb-button">Login</Link>
+            <Link to="/login" className="fb-button">Entrar</Link>
           )}
         </div>
       </div>
