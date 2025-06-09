@@ -2,6 +2,39 @@
 
 **FeliQuiz** é uma plataforma de quizzes que vai além de perguntas: é um espaço de expressão e descoberta de identidade. Criado por Lucas Feliciano, o projeto reúne quizzes temáticos, classificação cognitiva, badges colecionáveis e perfil social público. Cada resultado é um emblema que revela traços únicos de quem faz o quiz.
 
+## 🏗️ Arquitetura do Projeto
+
+O projeto está organizado em três partes principais:
+
+```
+feliquiz/
+├── src/                    # Frontend React + TypeScript
+├── backend/               # Backend Node.js + Express
+├── database/             # PostgreSQL schemas e migrations
+└── README.md
+```
+
+### 🎨 Frontend (React + TypeScript)
+- **Framework**: React 18 com TypeScript
+- **Styling**: Tailwind CSS
+- **Animações**: Framer Motion
+- **Roteamento**: React Router DOM
+- **Estado**: Context API
+- **Ícones**: Lucide React
+
+### ⚙️ Backend (Node.js + Express)
+- **Runtime**: Node.js com Express.js
+- **Autenticação**: JWT + bcryptjs
+- **Banco**: PostgreSQL com connection pooling
+- **Segurança**: Helmet, CORS, Rate Limiting
+- **Validação**: Express Validator
+
+### 🗄️ Banco de Dados (PostgreSQL)
+- **Estrutura**: Migrations e seeds organizados
+- **Segurança**: Row Level Security (RLS)
+- **Performance**: Índices otimizados
+- **Backup**: Scripts automatizados
+
 ---
 
 ## 📜 Manifesto
@@ -68,6 +101,76 @@
 
 ---
 
+## 🚀 Setup Completo
+
+### 1. Frontend (React)
+
+```bash
+# Instalar dependências
+npm install
+
+# Rodar em desenvolvimento
+npm run dev
+
+# Build para produção
+npm run build
+```
+
+### 2. Backend (Node.js)
+
+```bash
+# Navegar para o backend
+cd backend
+
+# Instalar dependências
+npm install
+
+# Configurar variáveis de ambiente
+cp .env.example .env
+# Editar .env com suas configurações
+
+# Rodar em desenvolvimento
+npm run dev
+
+# Rodar em produção
+npm start
+```
+
+### 3. Banco de Dados (PostgreSQL)
+
+```bash
+# Instalar PostgreSQL
+sudo apt install postgresql postgresql-contrib
+
+# Criar banco e usuário
+sudo -u postgres psql
+CREATE USER feliquiz_user WITH PASSWORD 'sua_senha';
+CREATE DATABASE feliquiz_db OWNER feliquiz_user;
+GRANT ALL PRIVILEGES ON DATABASE feliquiz_db TO feliquiz_user;
+
+# Executar migrations
+cd backend
+npm run migrate
+
+# Executar seeds
+npm run seed
+```
+
+### 4. Executar Tudo
+
+```bash
+# Terminal 1 - Frontend
+npm run dev
+
+# Terminal 2 - Backend
+cd backend && npm run dev
+
+# Terminal 3 - Banco (se necessário)
+sudo service postgresql start
+```
+
+---
+
 ## 💰 Monetização
 
 * **Quizzes Premium:** conteúdo exclusivo e badges lendárias (unitário ou assinatura).
@@ -79,35 +182,83 @@
 
 ---
 
-## 🛠️ Tecnologias & Setup
+## 🛠️ Tecnologias & Stack
 
-* **Front-end:** React + TypeScript, React Router, Tailwind CSS, lucide-react
-* **Back-end:** (futuro) Node.js, Express ou Django (Python)
-* **Banco de Dados:** PostgreSQL / MongoDB
-* **Hospedagem:** Vercel (front-end) / Render ou Heroku (back-end)
+### Frontend
+* **React** + **TypeScript** - Interface moderna e tipada
+* **React Router** - Roteamento SPA
+* **Tailwind CSS** - Styling utilitário
+* **Framer Motion** - Animações fluidas
+* **Lucide React** - Ícones consistentes
 
-### Instalação local (front-end)
+### Backend
+* **Node.js** + **Express** - API RESTful
+* **PostgreSQL** - Banco relacional robusto
+* **JWT** - Autenticação stateless
+* **bcryptjs** - Hash seguro de senhas
+* **Helmet** + **CORS** - Segurança
 
-```bash
-# Clone o repositório
-git clone https://github.com/seu-usuario/feliquiz.git
-cd feliquiz
-
-# Instale dependências
-npm install
-
-# Rode em modo dev
-npm run dev
-```
+### DevOps & Deploy
+* **Vite** - Build tool rápido
+* **Vercel** - Deploy do frontend
+* **Railway/Render** - Deploy do backend
+* **Supabase/Neon** - Banco em produção
 
 ---
 
-## 🚀 Contribuição
+## 📊 Status do Projeto
 
-Este é um projeto solo, mas contribuições são bem-vindas! Se tiver ideias de quizzes, badges ou melhorias: fique à vontade para abrir issues ou pull requests.
+### ✅ Implementado
+- [x] Interface completa do frontend
+- [x] Sistema de autenticação
+- [x] Quizzes funcionais com engine de traits
+- [x] Sistema de badges
+- [x] Perfis de usuário
+- [x] Sistema de likes no manifesto
+- [x] Backend API estruturado
+- [x] Banco de dados modelado
+
+### 🚧 Em Desenvolvimento
+- [ ] Integração frontend ↔ backend
+- [ ] Deploy em produção
+- [ ] Sistema de criação de quizzes
+- [ ] Dashboard administrativo
+
+### 🔮 Futuro
+- [ ] Sistema de pagamentos
+- [ ] Marketplace de badges
+- [ ] App mobile
+- [ ] IA para criação de quizzes
+
+---
+
+## 🤝 Contribuição
+
+Este é um projeto solo, mas contribuições são bem-vindas! Se tiver ideias de quizzes, badges ou melhorias:
+
+1. Faça fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
 
 ---
 
 ## 📄 Licença
 
 MIT © Lucas Feliciano 2025
+
+---
+
+## 📞 Contato
+
+- **Email**: lucas@feliquiz.com
+- **GitHub**: [@lucasfeliciano](https://github.com/lucasfeliciano)
+- **LinkedIn**: [Lucas Feliciano](https://linkedin.com/in/lucasfeliciano)
+
+---
+
+<div align="center">
+  <p><strong>Feito com ❤️ por Lucas Feliciano</strong></p>
+  <p><em>FeliQuiz - Onde cada quiz é um espelho da sua personalidade</em></p>
+</div>
