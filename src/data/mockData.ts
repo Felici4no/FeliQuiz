@@ -323,7 +323,7 @@ export const mockQuizzes: Quiz[] = [
     {
       id: 'r1',
       character: 'Harry Potter',
-      description: 'You\'re brave, loyal, and always stand up for what's right. Like Harry, you face danger head-on to protect those you care about and rely on your instincts.',
+      description: "You\'re brave, loyal, and always stand up for what's right. Like Harry, you face danger head-on to protect those you care about and rely on your instincts.",
       image: 'https://i.imgur.com/qjH4eyS.jpeg',
       badgeImage: '/badges/harry-potter.png',
       traits: [{ name: 'bravery', value: 5 }, { name: 'loyalty', value: 4 }, { name: 'impulsiveness', value: 2 }],
