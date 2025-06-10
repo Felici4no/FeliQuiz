@@ -41,7 +41,7 @@ const BadgesModal: React.FC<BadgesModalProps> = ({ quiz, isOpen, onClose }) => {
             <div className="flex items-center">
               <Trophy className="text-yellow-500 mr-3" size={24} />
               <div>
-                <h2 className="text-xl font-bold text-fb-blue">Resultados Possíveis</h2>
+                <h2 className="text-xl font-bold text-fb-blue">Badges Possíveis</h2>
                 <p className="text-gray-600 text-sm mt-1">{quiz.title}</p>
               </div>
             </div>
