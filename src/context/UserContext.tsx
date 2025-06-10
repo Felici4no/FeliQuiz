@@ -59,13 +59,13 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
       return false;
     }
     
-    // Create new user
+    // Create new user with reduced starting coins
     const newUser: User = {
       id: Date.now().toString(),
       username,
       name,
       profilePicture: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      feliCoins: 500, // Starting bonus
+      feliCoins: 50, // Reduced starting bonus
       badges: []
     };
     

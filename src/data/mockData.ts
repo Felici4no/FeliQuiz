@@ -6,23 +6,23 @@ export const mockUsers: User[] = [
     username: 'lucasfeliciano',
     name: 'Lucas Feliciano',
     profilePicture: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    feliCoins: 2500,
+    feliCoins: 250,
     badges: [
       {
         id: '1',
-        title: 'Harry Potter Character',
+        title: 'Harry Potter',
         image: '/badges/harry-potter.png',
         quizId: '1',
         dateEarned: '2023-01-15',
-        coinValue: 1000
+        coinValue: 100
       },
       {
         id: '2',
-        title: 'Marvel Superhero',
-        image: '/badges/marvel-hero.png',
+        title: 'Iron Man',
+        image: '/badges/iron-man.png',
         quizId: '2',
         dateEarned: '2023-02-10',
-        coinValue: 1500
+        coinValue: 150
       }
     ]
   },
@@ -31,15 +31,15 @@ export const mockUsers: User[] = [
     username: 'johndoe',
     name: 'John Doe',
     profilePicture: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    feliCoins: 1000,
+    feliCoins: 100,
     badges: [
       {
         id: '3',
-        title: 'Anime Character',
-        image: '/badges/anime-character.png',
-        quizId: '3',
+        title: 'Hermione Granger',
+        image: '/badges/hermione-granger.png',
+        quizId: '1',
         dateEarned: '2023-03-20',
-        coinValue: 1000
+        coinValue: 100
       }
     ]
   }
@@ -56,7 +56,7 @@ export const mockQuizzes: Quiz[] = [
     subtopic: 'Fantasy',
     takenCount: 789,
     createdAt: '2023-01-01',
-    coinReward: 100,
+    coinReward: 50,
    questions: [
     {
       id: 'q1',
@@ -64,7 +64,7 @@ export const mockQuizzes: Quiz[] = [
       options: [
         {
           id: 'q1o1',
-          text: 'Head-on with courage, even if it’s risky',
+          text: 'Head-on with courage, even if it's risky',
           traits: [{ name: 'bravery', value: 3 }, { name: 'impulsiveness', value: 2 }]
         },
         {
@@ -90,7 +90,7 @@ export const mockQuizzes: Quiz[] = [
       options: [
         {
           id: 'q2o1',
-          text: 'Honesty and standing up for what’s right',
+          text: 'Honesty and standing up for what's right',
           traits: [{ name: 'bravery', value: 2 }, { name: 'loyalty', value: 2 }]
         },
         {
@@ -168,7 +168,7 @@ export const mockQuizzes: Quiz[] = [
       options: [
         {
           id: 'q5o1',
-          text: 'Confront it immediately, even if it’s risky',
+          text: 'Confront it immediately, even if it's risky',
           traits: [{ name: 'courage', value: 3 }, { name: 'bravery', value: 2 }]
         },
         {
@@ -216,7 +216,7 @@ export const mockQuizzes: Quiz[] = [
     },
     {
       id: 'q7',
-      text: 'How do you react when you’re scared?',
+      text: 'How do you react when you're scared?',
       options: [
         {
           id: 'q7o1',
@@ -225,7 +225,7 @@ export const mockQuizzes: Quiz[] = [
         },
         {
           id: 'q7o2',
-          text: 'Analyze why you’re afraid and create a plan',
+          text: 'Analyze why you're afraid and create a plan',
           traits: [{ name: 'intelligence', value: 2 }, { name: 'caution', value: 2 }]
         },
         {
@@ -242,7 +242,7 @@ export const mockQuizzes: Quiz[] = [
     },
     {
       id: 'q8',
-      text: 'What’s your leadership style?',
+      text: 'What's your leadership style?',
       options: [
         {
           id: 'q8o1',
@@ -272,7 +272,7 @@ export const mockQuizzes: Quiz[] = [
       options: [
         {
           id: 'q9o1',
-          text: 'They’re there for a reason; follow them to keep order',
+          text: 'They're there for a reason; follow them to keep order',
           traits: [{ name: 'respect', value: 3 }, { name: 'caution', value: 2 }]
         },
         {
@@ -282,7 +282,7 @@ export const mockQuizzes: Quiz[] = [
         },
         {
           id: 'q9o3',
-          text: 'I question them and stand up if they’re unjust',
+          text: 'I question them and stand up if they're unjust',
           traits: [{ name: 'bravery', value: 2 }, { name: 'wisdom', value: 2 }]
         },
         {
@@ -323,92 +323,92 @@ export const mockQuizzes: Quiz[] = [
     {
       id: 'r1',
       character: 'Harry Potter',
-      description: 'You’re brave, loyal, and always stand up for what’s right. Like Harry, you face danger head-on to protect those you care about and rely on your instincts.',
+      description: 'You're brave, loyal, and always stand up for what's right. Like Harry, you face danger head-on to protect those you care about and rely on your instincts.',
       image: 'https://i.imgur.com/qjH4eyS.jpeg',
       badgeImage: '/badges/harry-potter.png',
       traits: [{ name: 'bravery', value: 5 }, { name: 'loyalty', value: 4 }, { name: 'impulsiveness', value: 2 }],
-      coinValue: 1000
+      coinValue: 100
     },
     {
       id: 'r2',
       character: 'Hermione Granger',
-      description: 'You’re intelligent, methodical, and always prepared. Like Hermione, you love learning, plan ahead, and rely on logic to solve problems.',
+      description: 'You're intelligent, methodical, and always prepared. Like Hermione, you love learning, plan ahead, and rely on logic to solve problems.',
       image: 'https://i.imgur.com/GCMIo8S.jpeg',
       badgeImage: '/badges/hermione-granger.png',
       traits: [{ name: 'intelligence', value: 5 }, { name: 'caution', value: 3 }, { name: 'curiosity', value: 2 }],
-      coinValue: 1000
+      coinValue: 100
     },
     {
       id: 'r3',
       character: 'Ron Weasley',
-      description: 'You’re loyal, good-hearted, and sometimes a bit skeptical. Like Ron, you value friendship above all, bring humor to the group, and stand by your friends even when you’re unsure.',
+      description: 'You're loyal, good-hearted, and sometimes a bit skeptical. Like Ron, you value friendship above all, bring humor to the group, and stand by your friends even when you're unsure.',
       image: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       badgeImage: '/badges/ron-weasley.png',
       traits: [{ name: 'loyalty', value: 4 }, { name: 'humor', value: 3 }, { name: 'courage', value: 2 }],
-      coinValue: 800
+      coinValue: 80
     },
     {
       id: 'r4',
       character: 'Draco Malfoy',
-      description: 'You’re ambitious, prideful, and resourceful. Like Draco, you can be cunning and determined to secure your status, even if it’s at odds with others.',
+      description: 'You're ambitious, prideful, and resourceful. Like Draco, you can be cunning and determined to secure your status, even if it's at odds with others.',
       image: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       badgeImage: '/badges/draco-malfoy.png',
       traits: [{ name: 'ambition', value: 5 }, { name: 'cunning', value: 4 }, { name: 'resourcefulness', value: 2 }],
-      coinValue: 900
+      coinValue: 90
     },
     {
       id: 'r5',
       character: 'Luna Lovegood',
-      description: 'You’re creative, open-minded, and quirky. Like Luna, you see the world differently, embrace uniqueness, and bring comfort and calm to those around you.',
+      description: 'You're creative, open-minded, and quirky. Like Luna, you see the world differently, embrace uniqueness, and bring comfort and calm to those around you.',
       image: 'https://images.pexels.com/photos/2473225/pexels-photo-2473225.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       badgeImage: '/badges/luna-lovegood.png',
       traits: [{ name: 'curiosity', value: 4 }, { name: 'kindness', value: 3 }, { name: 'creativity', value: 2 }],
-      coinValue: 950
+      coinValue: 95
     },
     {
       id: 'r6',
       character: 'Neville Longbottom',
-      description: 'You’re kind-hearted, brave in unexpected ways, and devoted. Like Neville, you grow stronger over time and stand up for what’s right even if you feel uncertain.',
+      description: 'You're kind-hearted, brave in unexpected ways, and devoted. Like Neville, you grow stronger over time and stand up for what's right even if you feel uncertain.',
       image: 'https://images.pexels.com/photos/4868317/pexels-photo-4868317.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       badgeImage: '/badges/neville-longbottom.png',
       traits: [{ name: 'kindness', value: 4 }, { name: 'bravery', value: 3 }, { name: 'loyalty', value: 2 }],
-      coinValue: 900
+      coinValue: 90
     },
     {
       id: 'r7',
       character: 'Ginny Weasley',
-      description: 'You’re confident, bold, and compassionate. Like Ginny, you face challenges head-on, support your friends, and have a sharp sense of humor.',
+      description: 'You're confident, bold, and compassionate. Like Ginny, you face challenges head-on, support your friends, and have a sharp sense of humor.',
       image: 'https://images.pexels.com/photos/3708307/pexels-photo-3708307.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       badgeImage: '/badges/ginny-weasley.png',
       traits: [{ name: 'confidence', value: 4 }, { name: 'bravery', value: 2 }, { name: 'kindness', value: 2 }],
-      coinValue: 950
+      coinValue: 95
     },
     {
       id: 'r8',
       character: 'Severus Snape',
-      description: 'You’re complex, resourceful, and fiercely protective in your own way. Like Snape, you may appear stern and enigmatic, but you value loyalty and sacrifice when it matters most.',
+      description: 'You're complex, resourceful, and fiercely protective in your own way. Like Snape, you may appear stern and enigmatic, but you value loyalty and sacrifice when it matters most.',
       image: 'https://images.pexels.com/photos/3218803/pexels-photo-3218803.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       badgeImage: '/badges/severus-snape.png',
       traits: [{ name: 'cunning', value: 4 }, { name: 'loyalty', value: 3 }, { name: 'resourcefulness', value: 3 }],
-      coinValue: 1100
+      coinValue: 110
     },
     {
       id: 'r9',
       character: 'Albus Dumbledore',
-      description: 'You’re wise, compassionate, and visionary. Like Dumbledore, you value knowledge, empathy, and guiding others with kindness and insight.',
+      description: 'You're wise, compassionate, and visionary. Like Dumbledore, you value knowledge, empathy, and guiding others with kindness and insight.',
       image: 'https://images.pexels.com/photos/7176292/pexels-photo-7176292.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       badgeImage: '/badges/albus-dumbledore.png',
       traits: [{ name: 'wisdom', value: 5 }, { name: 'empathy', value: 3 }, { name: 'leadership', value: 2 }],
-      coinValue: 1200
+      coinValue: 120
     },
     {
       id: 'r10',
       character: 'Minerva McGonagall',
-      description: 'You’re strict but fair, intelligent, and fiercely protective of your students. Like Professor McGonagall, you uphold rules yet value courage and compassion in others.',
+      description: 'You're strict but fair, intelligent, and fiercely protective of your students. Like Professor McGonagall, you uphold rules yet value courage and compassion in others.',
       image: 'https://images.pexels.com/photos/7988172/pexels-photo-7988172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       badgeImage: '/badges/minerva-mcgonagall.png',
       traits: [{ name: 'intelligence', value: 4 }, { name: 'courage', value: 2 }, { name: 'leadership', value: 3 }],
-      coinValue: 1100
+      coinValue: 110
     }
   ]
   },
@@ -422,7 +422,7 @@ export const mockQuizzes: Quiz[] = [
     subtopic: 'Superheroes',
     takenCount: 12876,
     createdAt: '2023-02-01',
-    coinReward: 150,
+    coinReward: 75,
     questions: [
       {
         id: 'q1',
@@ -459,7 +459,7 @@ export const mockQuizzes: Quiz[] = [
         image: 'https://images.pexels.com/photos/8107841/pexels-photo-8107841.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
         badgeImage: '/badges/iron-man.png',
         traits: [{ name: 'intelligence', value: 5 }, { name: 'confidence', value: 4 }],
-        coinValue: 1500
+        coinValue: 150
       }
     ]
   }

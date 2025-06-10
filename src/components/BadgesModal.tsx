@@ -14,9 +14,9 @@ const BadgesModal: React.FC<BadgesModalProps> = ({ quiz, isOpen, onClose }) => {
 
   // Calculate rarity based on coin value
   const getRarity = (coinValue: number) => {
-    if (coinValue >= 1200) return { name: 'Lendário', color: 'text-purple-600', bg: 'bg-purple-50', border: 'border-purple-200' };
-    if (coinValue >= 1000) return { name: 'Raro', color: 'text-blue-600', bg: 'bg-blue-50', border: 'border-blue-200' };
-    if (coinValue >= 800) return { name: 'Incomum', color: 'text-green-600', bg: 'bg-green-50', border: 'border-green-200' };
+    if (coinValue >= 120) return { name: 'Lendário', color: 'text-purple-600', bg: 'bg-purple-50', border: 'border-purple-200' };
+    if (coinValue >= 100) return { name: 'Raro', color: 'text-blue-600', bg: 'bg-blue-50', border: 'border-blue-200' };
+    if (coinValue >= 90) return { name: 'Incomum', color: 'text-green-600', bg: 'bg-green-50', border: 'border-green-200' };
     return { name: 'Comum', color: 'text-gray-600', bg: 'bg-gray-50', border: 'border-gray-200' };
   };
 
@@ -88,17 +88,8 @@ const BadgesModal: React.FC<BadgesModalProps> = ({ quiz, isOpen, onClose }) => {
                       </div>
                     </div>
 
-                    {/* Character Image */}
-                    <div className="w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden border-2 border-white shadow-md">
-                      <img
-                        src={result.image}
-                        alt={result.character}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-
-                    {/* Badge Image */}
-                    <div className="w-16 h-16 mx-auto mb-3">
+                    {/* Badge Image - Destaque principal */}
+                    <div className="w-20 h-20 mx-auto mb-3">
                       <img
                         src={result.badgeImage || '/badges/default.png'}
                         alt={`${result.character} badge`}
@@ -142,10 +133,10 @@ const BadgesModal: React.FC<BadgesModalProps> = ({ quiz, isOpen, onClose }) => {
               <div className="bg-fb-blue/5 p-4 rounded-lg mb-4">
                 <h3 className="font-semibold text-fb-blue mb-2">🎯 Como funciona?</h3>
                 <p className="text-sm text-gray-600 mb-2">
-                  Suas respostas são analisadas para determinar qual resultado combina mais com você.
+                  Suas respostas são analisadas para determinar qual badge combina mais com você.
                 </p>
                 <p className="text-xs text-gray-500">
-                  Cada pergunta contribui para diferentes características que definem seu resultado final.
+                  Cada pergunta contribui para diferentes características que definem sua badge final.
                 </p>
               </div>
               
