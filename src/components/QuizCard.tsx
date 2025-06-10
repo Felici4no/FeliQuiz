@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Users, Coins, Clock } from 'lucide-react';
+import { Users, Coins, Clock, Eye } from 'lucide-react';
 import { Quiz } from '../types';
 import BadgesModal from './BadgesModal';
 
@@ -57,37 +57,50 @@ const QuizCard: React.FC<QuizCardProps> = ({ quiz }) => {
           <h3 className="text-lg font-semibold mb-2">{quiz.title}</h3>
           <p className="text-gray-600 text-sm mb-4 line-clamp-2">{quiz.description}</p>
 
-        {/* Quiz Stats */}
-        <div className="mt-auto space-y-2 text-sm text-gray-600">
-          <div className="flex items-center justify-between border-t border-gray-100 pt-3">
-            <div className="flex items-center">
-              <Users size={16} className="mr-1" />
-              <span>{quiz.takenCount.toLocaleString()} jogaram</span>
+          {/* Quiz Stats */}
+          <div className="mt-auto space-y-2 text-sm text-gray-600">
+            <div className="flex items-center justify-between border-t border-gray-100 pt-3">
+              <div className="flex items-center">
+                <Users size={16} className="mr-1" />
+                <span>{quiz.takenCount.toLocaleString()} jogaram</span>
+              </div>
+              <div className="flex items-center text-yellow-600">
+                <Coins size={16} className="mr-1" />
+                <span>{quiz.coinReward}</span>
+              </div>
             </div>
-            <div className="flex items-center text-yellow-600">
-              <Coins size={16} className="mr-1" />
-              <span>{quiz.coinReward}</span>
+            
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <Clock size={16} className="mr-1" />
+                <span>{quiz.questions.length} perguntas</span>
+              </div>
+              <button
+                onClick={() => setShowBadgesModal(true)}
+                className="text-fb-blue hover:underline flex items-center"
+              >
+                <Eye size={16} className="mr-1" />
+                {quiz.results.length} resultados
+              </button>
             </div>
           </div>
-          
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <Clock size={16} className="mr-1" />
-              <span>{quiz.questions.length} perguntas</span>
-            </div>
-            <span className="text-fb-blue">
-              {quiz.results.length} resultados possíveis
-            </span>
-          </div>
-        </div>
 
-          {/* Action Button */}
-          <Link 
-            to={`/quiz/${quiz.id}`} 
-            className="fb-button block text-center mt-4 w-full"
-          >
-            Fazer Quiz
-          </Link>
+          {/* Action Buttons */}
+          <div className="flex gap-2 mt-4">
+            <Link 
+              to={`/quiz/${quiz.id}`} 
+              className="fb-button flex-1 text-center"
+            >
+              Fazer Quiz
+            </Link>
+            <button
+              onClick={() => setShowBadgesModal(true)}
+              className="border border-fb-border py-2 px-3 rounded hover:bg-gray-100 transition flex items-center justify-center"
+              title="Ver resultados possíveis"
+            >
+              <Eye size={18} />
+            </button>
+          </div>
         </div>
       </div>
 
