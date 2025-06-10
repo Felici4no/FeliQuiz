@@ -80,7 +80,7 @@ const QuizCard: React.FC<QuizCardProps> = ({ quiz }) => {
                 className="text-fb-blue hover:underline flex items-center"
               >
                 <Eye size={16} className="mr-1" />
-                {quiz.results.length} resultados
+                {quiz.results.length} Badges
               </button>
             </div>
           </div>
