@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { LogOut, Settings, Edit3, Plus, Calendar, Trophy } from 'lucide-react';
+import { LogOut, Settings, Edit3, Plus, Calendar, Trophy, Share2 } from 'lucide-react';
 import { User, QuizSubmission } from '../types';
 import { useUser } from '../context/UserContext';
 import { useQuiz } from '../context/QuizContext';
@@ -33,6 +33,56 @@ const Profile: React.FC = () => {
   const handleLogout = () => {
     logout();
     navigate('/');
+  };
+
+  const handleShareProfile = () => {
+    if (!user) return;
+
+    const shareData = {
+      title: `Perfil de ${user.name} no FeliQuiz`,
+      text: `Confira o perfil de ${user.name} (@${user.username}) no FeliQuiz! ${user.badges.length} badges conquistadas e ${user.feliCoins} FeliCoins! 🏆`,
+      url: window.location.href
+    };
+
+    if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+      // Use native share API if available
+      navigator.share(shareData).catch(console.error);
+    } else {
+      // Fallback: copy to clipboard
+      const shareText = `${shareData.text}\n${shareData.url}`;
+      
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(shareText).then(() => {
+          alert('Link do perfil copiado para a área de transferência!');
+        }).catch(() => {
+          // Fallback for clipboard API failure
+          fallbackCopyToClipboard(shareText);
+        });
+      } else {
+        fallbackCopyToClipboard(shareText);
+      }
+    }
+  };
+
+  const fallbackCopyToClipboard = (text: string) => {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    textArea.style.top = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+      document.execCommand('copy');
+      alert('Link do perfil copiado para a área de transferência!');
+    } catch (err) {
+      console.error('Erro ao copiar:', err);
+      alert('Não foi possível copiar o link. Tente novamente.');
+    }
+    
+    document.body.removeChild(textArea);
   };
 
   if (!user) {
@@ -76,31 +126,43 @@ const Profile: React.FC = () => {
                 <CoinBalance balance={user.feliCoins} size="large" />
               </div>
               
-              {isOwnProfile && (
-                <div className="flex flex-col sm:flex-row gap-2 mt-4 md:mt-0">
-                  {canCreateQuizzes() && (
+              <div className="flex flex-col sm:flex-row gap-2 mt-4 md:mt-0">
+                {/* Share Profile Button - Always visible */}
+                <button 
+                  onClick={handleShareProfile}
+                  className="border border-fb-border text-fb-blue hover:bg-fb-blue hover:text-white font-semibold py-1 px-4 rounded transition flex items-center justify-center"
+                >
+                  <Share2 size={16} className="mr-2" />
+                  Compartilhar Perfil
+                </button>
+                
+                {/* Own Profile Actions */}
+                {isOwnProfile && (
+                  <>
+                    {canCreateQuizzes() && (
+                      <button className="fb-button flex items-center justify-center">
+                        <Plus size={16} className="mr-2" />
+                        Criar Quiz
+                      </button>
+                    )}
                     <button className="fb-button flex items-center justify-center">
-                      <Plus size={16} className="mr-2" />
-                      Criar Quiz
+                      <Edit3 size={16} className="mr-2" />
+                      Editar Perfil
                     </button>
-                  )}
-                  <button className="fb-button flex items-center justify-center">
-                    <Edit3 size={16} className="mr-2" />
-                    Editar Perfil
-                  </button>
-                  <button className="fb-button flex items-center justify-center">
-                    <Settings size={16} className="mr-2" />
-                    Configurações
-                  </button>
-                  <button 
-                    onClick={handleLogout}
-                    className="border border-red-300 text-red-600 hover:bg-red-50 font-semibold py-1 px-4 rounded transition flex items-center justify-center"
-                  >
-                    <LogOut size={16} className="mr-2" />
-                    Sair
-                  </button>
-                </div>
-              )}
+                    <button className="fb-button flex items-center justify-center">
+                      <Settings size={16} className="mr-2" />
+                      Configurações
+                    </button>
+                    <button 
+                      onClick={handleLogout}
+                      className="border border-red-300 text-red-600 hover:bg-red-50 font-semibold py-1 px-4 rounded transition flex items-center justify-center"
+                    >
+                      <LogOut size={16} className="mr-2" />
+                      Sair
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
             
             <div className="border-t border-fb-border pt-4 mt-4">
