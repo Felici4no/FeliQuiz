@@ -97,7 +97,7 @@ const Profile: React.FC = () => {
                   <div className="text-sm text-gray-600">Quizzes Criados</div>
                 </div>
                 <div className="p-3 bg-fb-gray rounded">
-                  <div className="text-2xl font-bold text-fb-blue">0</div>
+                  <div className="text-2xl font-bold text-fb-blue">1</div>
                   <div className="text-sm text-gray-600">Quizzes Feitos</div>
                 </div>
               </div>
