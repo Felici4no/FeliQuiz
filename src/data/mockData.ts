@@ -1,4 +1,4 @@
-import { User, Quiz, Topic } from '../types';
+import { User, Quiz, Topic, QuizSubmission } from '../types';
 
 export const mockUsers: User[] = [
   {
@@ -7,6 +7,8 @@ export const mockUsers: User[] = [
     name: 'Lucas Feliciano',
     profilePicture: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     feliCoins: 250,
+    quizzesTaken: 3,
+    quizzesCreated: 2,
     badges: [
       {
         id: '1',
@@ -32,6 +34,8 @@ export const mockUsers: User[] = [
     name: 'John Doe',
     profilePicture: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     feliCoins: 100,
+    quizzesTaken: 1,
+    quizzesCreated: 0,
     badges: [
       {
         id: '3',
@@ -42,6 +46,33 @@ export const mockUsers: User[] = [
         coinValue: 100
       }
     ]
+  }
+];
+
+export const mockQuizSubmissions: QuizSubmission[] = [
+  {
+    id: '1',
+    userId: '1',
+    quizId: '1',
+    resultId: 'r1',
+    submittedAt: '2023-01-15T10:30:00.000Z',
+    earnedCoins: 50
+  },
+  {
+    id: '2',
+    userId: '1',
+    quizId: '2',
+    resultId: 'r1',
+    submittedAt: '2023-02-10T14:20:00.000Z',
+    earnedCoins: 75
+  },
+  {
+    id: '3',
+    userId: '2',
+    quizId: '1',
+    resultId: 'r2',
+    submittedAt: '2023-03-20T16:45:00.000Z',
+    earnedCoins: 50
   }
 ];
 
@@ -57,6 +88,8 @@ export const mockQuizzes: Quiz[] = [
     takenCount: 789,
     createdAt: '2023-01-01',
     coinReward: 50,
+    createdBy: 'lucasfeliciano',
+    isPublished: true,
     questions: [
       {
         id: 'q1',
@@ -423,6 +456,8 @@ export const mockQuizzes: Quiz[] = [
     takenCount: 12876,
     createdAt: '2023-02-01',
     coinReward: 75,
+    createdBy: 'lucasfeliciano',
+    isPublished: true,
     questions: [
       {
         id: 'q1',

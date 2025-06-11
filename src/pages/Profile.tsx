@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { LogOut, Settings, Edit3 } from 'lucide-react';
-import { User } from '../types';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import { LogOut, Settings, Edit3, Plus, Calendar, Trophy } from 'lucide-react';
+import { User, QuizSubmission } from '../types';
 import { useUser } from '../context/UserContext';
+import { useQuiz } from '../context/QuizContext';
 import Badge from '../components/Badge';
 import CoinBalance from '../components/CoinBalance';
 
 const Profile: React.FC = () => {
   const { username } = useParams<{ username: string }>();
   const navigate = useNavigate();
-  const { getUserByUsername, currentUser, logout } = useUser();
+  const { getUserByUsername, currentUser, logout, getUserQuizSubmissions, canCreateQuizzes } = useUser();
+  const { getQuizById } = useQuiz();
   const [user, setUser] = useState<User | null>(null);
   const [isOwnProfile, setIsOwnProfile] = useState(false);
+  const [userSubmissions, setUserSubmissions] = useState<QuizSubmission[]>([]);
 
   useEffect(() => {
     if (username) {
@@ -19,9 +22,13 @@ const Profile: React.FC = () => {
       if (profileUser) {
         setUser(profileUser);
         setIsOwnProfile(currentUser?.id === profileUser.id);
+        
+        // Get user's quiz submissions
+        const submissions = getUserQuizSubmissions(profileUser.id);
+        setUserSubmissions(submissions);
       }
     }
-  }, [username, getUserByUsername, currentUser]);
+  }, [username, getUserByUsername, currentUser, getUserQuizSubmissions]);
 
   const handleLogout = () => {
     logout();
@@ -61,11 +68,22 @@ const Profile: React.FC = () => {
               <div>
                 <h1 className="text-2xl font-bold mb-1">{user.name}</h1>
                 <p className="text-gray-600 mb-2">@{user.username}</p>
+                {canCreateQuizzes(user.username) && (
+                  <span className="inline-block bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full mb-2">
+                    ✨ Criador de Quizzes
+                  </span>
+                )}
                 <CoinBalance balance={user.feliCoins} size="large" />
               </div>
               
               {isOwnProfile && (
                 <div className="flex flex-col sm:flex-row gap-2 mt-4 md:mt-0">
+                  {canCreateQuizzes() && (
+                    <button className="fb-button flex items-center justify-center">
+                      <Plus size={16} className="mr-2" />
+                      Criar Quiz
+                    </button>
+                  )}
                   <button className="fb-button flex items-center justify-center">
                     <Edit3 size={16} className="mr-2" />
                     Editar Perfil
@@ -87,18 +105,22 @@ const Profile: React.FC = () => {
             
             <div className="border-t border-fb-border pt-4 mt-4">
               <h2 className="font-semibold mb-3">Estatísticas</h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-center">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                 <div className="p-3 bg-fb-gray rounded">
                   <div className="text-2xl font-bold text-fb-blue">{user.badges.length}</div>
                   <div className="text-sm text-gray-600">Badges Conquistadas</div>
                 </div>
                 <div className="p-3 bg-fb-gray rounded">
-                  <div className="text-2xl font-bold text-fb-blue">0</div>
+                  <div className="text-2xl font-bold text-fb-blue">{user.quizzesTaken}</div>
+                  <div className="text-sm text-gray-600">Quizzes Feitos</div>
+                </div>
+                <div className="p-3 bg-fb-gray rounded">
+                  <div className="text-2xl font-bold text-fb-blue">{user.quizzesCreated}</div>
                   <div className="text-sm text-gray-600">Quizzes Criados</div>
                 </div>
                 <div className="p-3 bg-fb-gray rounded">
-                  <div className="text-2xl font-bold text-fb-blue">1</div>
-                  <div className="text-sm text-gray-600">Quizzes Feitos</div>
+                  <div className="text-2xl font-bold text-fb-blue">{user.feliCoins}</div>
+                  <div className="text-sm text-gray-600">FeliCoins</div>
                 </div>
               </div>
             </div>
@@ -106,9 +128,65 @@ const Profile: React.FC = () => {
         </div>
       </div>
       
+      {/* Quiz History Section */}
+      {userSubmissions.length > 0 && (
+        <div className="fb-card mt-6">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl font-bold flex items-center">
+              <Calendar className="mr-2" size={20} />
+              Histórico de Quizzes
+            </h2>
+            <span className="text-sm text-gray-600">{userSubmissions.length} quiz{userSubmissions.length !== 1 ? 'zes' : ''} feito{userSubmissions.length !== 1 ? 's' : ''}</span>
+          </div>
+          
+          <div className="space-y-3">
+            {userSubmissions.slice(0, 5).map(submission => {
+              const quiz = getQuizById(submission.quizId);
+              if (!quiz) return null;
+              
+              return (
+                <div key={submission.id} className="border border-fb-border rounded p-3 hover:bg-gray-50 transition">
+                  <div className="flex items-center justify-between">
+                    <div className="flex-1">
+                      <h3 className="font-medium text-fb-blue">{quiz.title}</h3>
+                      <p className="text-sm text-gray-600">
+                        Feito em {new Date(submission.submittedAt).toLocaleDateString('pt-BR')}
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-sm text-yellow-600 font-medium">
+                        +{submission.earnedCoins} FeliCoins
+                      </div>
+                      <Link 
+                        to={`/quiz/${quiz.id}`}
+                        className="text-xs text-fb-blue hover:underline"
+                      >
+                        Fazer novamente
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+            
+            {userSubmissions.length > 5 && (
+              <div className="text-center pt-2">
+                <button className="text-fb-blue hover:underline text-sm">
+                  Ver todos os {userSubmissions.length} quizzes
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+      
+      {/* Badges Collection */}
       <div className="fb-card mt-6">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold">Coleção de Badges</h2>
+          <h2 className="text-xl font-bold flex items-center">
+            <Trophy className="mr-2" size={20} />
+            Coleção de Badges
+          </h2>
           {user.badges.length > 0 && (
             <span className="text-sm text-gray-600">{user.badges.length} conquistadas</span>
           )}

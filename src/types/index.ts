@@ -5,6 +5,8 @@ export interface User {
   profilePicture: string;
   badges: Badge[];
   feliCoins: number;
+  quizzesTaken: number;
+  quizzesCreated: number;
 }
 
 export interface Badge {
@@ -29,6 +31,8 @@ export interface Quiz {
   createdAt: string;
   takenCount: number;
   coinReward: number;
+  createdBy?: string; // Username of creator
+  isPublished: boolean;
 }
 
 export type QuizCategory = 'entertainment' | 'thinking' | 'self-discovery' | 'expression' | 'competition';
@@ -69,4 +73,13 @@ export interface Topic {
 export interface Subtopic {
   id: string;
   name: string;
+}
+
+export interface QuizSubmission {
+  id: string;
+  userId: string;
+  quizId: string;
+  resultId: string;
+  submittedAt: string;
+  earnedCoins: number;
 }

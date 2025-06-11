@@ -20,6 +20,7 @@ const QuizDetail: React.FC = () => {
   const [isCompleted, setIsCompleted] = useState(false);
   const [traits, setTraits] = useState<Trait[]>([]);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+  const [hasAlreadyTaken, setHasAlreadyTaken] = useState(false);
 
   // Mock data for result statistics
   const mockResultStats = {
@@ -37,11 +38,17 @@ const QuizDetail: React.FC = () => {
       const foundQuiz = getQuizById(id);
       if (foundQuiz) {
         setQuiz(foundQuiz);
+        
+        // Check if user has already taken this quiz
+        if (currentUser) {
+          const userBadge = currentUser.badges.find(badge => badge.quizId === id);
+          setHasAlreadyTaken(!!userBadge);
+        }
       } else {
         navigate('/quizzes');
       }
     }
-  }, [id, getQuizById, navigate]);
+  }, [id, getQuizById, navigate, currentUser]);
 
   if (!quiz) {
     return <div className="container mx-auto px-4 py-8">Loading quiz...</div>;
@@ -126,7 +133,19 @@ const QuizDetail: React.FC = () => {
           <div className="fb-card">
             <div className="mb-6">
               <h1 className="text-2xl font-bold mb-2">{quiz.title}</h1>
-              <p className="text-gray-600">{quiz.description}</p>
+              <p className="text-gray-600 mb-2">{quiz.description}</p>
+              {quiz.createdBy && (
+                <p className="text-sm text-gray-500">
+                  Criado por <Link to={`/profile/${quiz.createdBy}`} className="text-fb-blue hover:underline">@{quiz.createdBy}</Link>
+                </p>
+              )}
+              {hasAlreadyTaken && (
+                <div className="bg-blue-50 border border-blue-200 p-3 rounded mt-3">
+                  <p className="text-sm text-blue-800">
+                    ✅ Você já fez este quiz! Fazendo novamente você pode obter um resultado diferente, mas não ganhará FeliCoins adicionais.
+                  </p>
+                </div>
+              )}
             </div>
             
             <div className="mb-4 bg-fb-gray p-3 rounded">
@@ -197,8 +216,10 @@ const QuizDetail: React.FC = () => {
               
               {/* Badge Section - Different for logged vs non-logged users */}
               {currentUser ? (
-                <div className="bg-green-50 border border-green-200 p-4 rounded mb-6">
-                  <h3 className="font-semibold text-green-800 mb-2">🎉 Badge Conquistada!</h3>
+                <div className={`border p-4 rounded mb-6 ${hasAlreadyTaken ? 'bg-blue-50 border-blue-200' : 'bg-green-50 border-green-200'}`}>
+                  <h3 className={`font-semibold mb-2 ${hasAlreadyTaken ? 'text-blue-800' : 'text-green-800'}`}>
+                    {hasAlreadyTaken ? '🔄 Quiz Refeito!' : '🎉 Badge Conquistada!'}
+                  </h3>
                   <div className="w-20 h-20 mx-auto mb-2">
                     <img 
                       src={result?.badgeImage || '/badges/default.png'} 
@@ -206,7 +227,17 @@ const QuizDetail: React.FC = () => {
                       className="w-full h-full object-contain"
                     />
                   </div>
-                  <p className="text-sm text-green-700">Esta badge foi adicionada ao seu perfil</p>
+                  <p className={`text-sm ${hasAlreadyTaken ? 'text-blue-700' : 'text-green-700'}`}>
+                    {hasAlreadyTaken 
+                      ? 'Você obteve um novo resultado! A badge anterior foi atualizada no seu perfil.'
+                      : 'Esta badge foi adicionada ao seu perfil'
+                    }
+                  </p>
+                  {!hasAlreadyTaken && (
+                    <p className="text-sm text-green-600 mt-1">
+                      +{quiz.coinReward} FeliCoins adicionados à sua conta!
+                    </p>
+                  )}
                 </div>
               ) : (
                 <div className="bg-blue-50 border border-blue-200 p-4 rounded mb-6">
@@ -219,7 +250,7 @@ const QuizDetail: React.FC = () => {
                     />
                   </div>
                   <p className="text-sm text-blue-700 mb-3">
-                    Para salvar esta badge no seu perfil, você precisa fazer login ou criar uma conta
+                    Para salvar esta badge no seu perfil e ganhar {quiz.coinReward} FeliCoins, você precisa fazer login ou criar uma conta
                   </p>
                   <div className="flex flex-col sm:flex-row gap-2 justify-center">
                     <Link to="/login" className="fb-button text-sm">

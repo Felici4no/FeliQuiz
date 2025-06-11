@@ -1,11 +1,12 @@
 import React, { createContext, useContext, useState } from 'react';
-import { User } from '../types';
-import { mockUsers } from '../data/mockData';
+import { User, QuizSubmission } from '../types';
+import { mockUsers, mockQuizSubmissions } from '../data/mockData';
 
 interface UserContextType {
   currentUser: User | null;
   setCurrentUser: (user: User | null) => void;
   getUserByUsername: (username: string) => User | undefined;
+  getUserQuizSubmissions: (userId: string) => QuizSubmission[];
   login: (email: string, password: string) => Promise<boolean>;
   register: (name: string, username: string, email: string, password: string) => Promise<boolean>;
   logout: () => void;
@@ -13,6 +14,7 @@ interface UserContextType {
   manifestoLikes: number;
   hasLikedManifesto: boolean;
   toggleManifestoLike: () => void;
+  canCreateQuizzes: (username?: string) => boolean;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -25,6 +27,15 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const getUserByUsername = (username: string): User | undefined => {
     return mockUsers.find(user => user.username === username);
+  };
+
+  const getUserQuizSubmissions = (userId: string): QuizSubmission[] => {
+    return mockQuizSubmissions.filter(submission => submission.userId === userId);
+  };
+
+  const canCreateQuizzes = (username?: string): boolean => {
+    const userToCheck = username || currentUser?.username;
+    return userToCheck === 'lucasfeliciano';
   };
 
   const login = async (email: string, password: string): Promise<boolean> => {
@@ -66,7 +77,9 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
       name,
       profilePicture: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       feliCoins: 50, // Reduced starting bonus
-      badges: []
+      badges: [],
+      quizzesTaken: 0,
+      quizzesCreated: 0
     };
     
     mockUsers.push(newUser);
@@ -105,13 +118,15 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
       currentUser, 
       setCurrentUser, 
       getUserByUsername,
+      getUserQuizSubmissions,
       login,
       register,
       logout,
       isLoading,
       manifestoLikes,
       hasLikedManifesto,
-      toggleManifestoLike
+      toggleManifestoLike,
+      canCreateQuizzes
     }}>
       {children}
     </UserContext.Provider>
