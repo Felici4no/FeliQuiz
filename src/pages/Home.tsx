@@ -92,7 +92,6 @@ const Home: React.FC = () => {
               to={`/quizzes?category=${cat.id}`}
               className="fb-card flex items-center justify-center hover:bg-gray-50 transition"
             >
-              {cat.icon}
               <span>
                 {cat.label} {cat.emoji}
               </span>

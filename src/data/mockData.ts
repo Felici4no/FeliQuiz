@@ -13,7 +13,7 @@ export const mockUsers: User[] = [
       {
         id: '1',
         title: 'Harry Potter',
-        image: '/badges/harry-potter.png',
+        image: 'https://i.imgur.com/X6C1X0Q.png',
         quizId: '1',
         dateEarned: '2023-01-15',
         coinValue: 100
@@ -358,7 +358,7 @@ export const mockQuizzes: Quiz[] = [
         character: "Harry Potter",
         description: "Você é corajoso, leal e sempre defende o que é certo. Como Harry, você enfrenta o perigo de frente para proteger aqueles de quem gosta e confia em seus instintos.",
         image: "https://i.imgur.com/qjH4eyS.jpeg",
-        badgeImage: "/badges/harry-potter.png",
+        badgeImage: "https://i.imgur.com/X6C1X0Q.png",
         traits: [{ name: "bravery", value: 5 }, { name: "loyalty", value: 4 }, { name: "impulsiveness", value: 2 }],
         coinValue: 100
       },
