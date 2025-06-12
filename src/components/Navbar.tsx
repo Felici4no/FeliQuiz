@@ -18,10 +18,13 @@ const Navbar: React.FC = () => {
           {currentUser ? (
             <div className="flex items-center space-x-3">
               {canCreateQuizzes() && (
-                <button className="bg-white/10 hover:bg-white/20 text-white px-3 py-1 rounded transition flex items-center">
+                <Link 
+                  to="/create-quiz"
+                  className="bg-white/10 hover:bg-white/20 text-white px-3 py-1 rounded transition flex items-center"
+                >
                   <Plus size={16} className="mr-1" />
                   <span className="hidden sm:inline">Criar Quiz</span>
-                </button>
+                </Link>
               )}
               <CoinBalance balance={currentUser.feliCoins} />
               <Link to={`/profile/${currentUser.username}`} className="flex items-center hover:bg-white/10 rounded px-2 py-1 transition">
