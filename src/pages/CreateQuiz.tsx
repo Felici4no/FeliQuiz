@@ -5,6 +5,9 @@ import { ArrowLeft, ArrowRight, Save, Eye, AlertCircle, CheckCircle, Plus, X, Up
 import { useUser } from '../context/UserContext';
 import { Quiz, QuizCategory, Trait, Result, Question, QuestionOption } from '../types';
 import { mockTopics } from '../data/mockData';
+import ResultFormModal from '../components/ResultFormModal';
+import QuestionFormModal from '../components/QuestionFormModal';
+import QuizPreviewModal from '../components/QuizPreviewModal';
 
 interface CreateQuizStep {
   id: number;
@@ -599,7 +602,7 @@ const ResultsStep: React.FC<{
     </div>
   );
 };
-
+// Result Form Modal
 const QuestionsStep: React.FC<{
   quizDraft: QuizDraft;
   updateQuizDraft: (updates: Partial<QuizDraft>) => void;
@@ -875,32 +878,5 @@ const QualityCheck: React.FC<{ condition: boolean; text: string }> = ({ conditio
   </div>
 );
 
-// Modal Components (simplified for brevity)
-const ResultFormModal: React.FC<{
-  result: Result | null;
-  onSave: (result: Result) => void;
-  onCancel: () => void;
-}> = ({ result, onSave, onCancel }) => {
-  // Implementation would go here
-  return <div>Result Form Modal</div>;
-};
-
-const QuestionFormModal: React.FC<{
-  question: Question | null;
-  availableTraits: string[];
-  onSave: (question: Question) => void;
-  onCancel: () => void;
-}> = ({ question, availableTraits, onSave, onCancel }) => {
-  // Implementation would go here
-  return <div>Question Form Modal</div>;
-};
-
-const QuizPreviewModal: React.FC<{
-  quizDraft: QuizDraft;
-  onClose: () => void;
-}> = ({ quizDraft, onClose }) => {
-  // Implementation would go here
-  return <div>Quiz Preview Modal</div>;
-};
 
 export default CreateQuiz;
