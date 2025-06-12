@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  BrainCircuit,
-  Lightbulb,
-  HeartHandshake,
-  PartyPopper,
-  Trophy,
-} from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useQuiz } from '../context/QuizContext';
 import QuizCard from '../components/QuizCard';
@@ -33,11 +26,11 @@ const rotatingBanners = [
 ];
 
 const categories = [
-  { id: 'entertainment', label: 'Pra se divertir', icon: <PartyPopper className="w-5 h-5 mr-2" />, emoji: '🎉' },
-  { id: 'thinking',     label: 'Pra pensar',     icon: <BrainCircuit className="w-5 h-5 mr-2" />, emoji: '🧠' },
-  { id: 'self-discovery',label: 'Pra se conhecer',icon: <Lightbulb className="w-5 h-5 mr-2" />, emoji: '🪞' },
-  { id: 'expression',   label: 'Pra se expressar',icon: <HeartHandshake className="w-5 h-5 mr-2" />, emoji: '🧑‍🎤' },
-  { id: 'competition',  label: 'Pra competir',   icon: <Trophy className="w-5 h-5 mr-2" />,    emoji: '🏆' },
+  { id: 'entertainment', label: 'Pra se divertir', emoji: '🎉' },
+  { id: 'thinking',     label: 'Pra pensar',     emoji: '🧠' },
+  { id: 'self-discovery',label: 'Pra se conhecer',emoji: '🪞' },
+  { id: 'expression',   label: 'Pra se expressar',emoji: '🧑‍🎤' },
+  { id: 'competition',  label: 'Pra competir',   emoji: '🏆' },
 ];
 
 const bannerVariants = {
