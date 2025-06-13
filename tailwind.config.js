@@ -18,6 +18,9 @@ export default {
       fontFamily: {
         'lucida': ['"Lucida Grande"', '"Lucida Sans Unicode"', 'Arial', 'sans-serif'],
       },
+      screens: {
+        'xs': '475px',
+      },
     },
   },
   plugins: [],
